@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pantalla partida</title>
+  <link rel="stylesheet" href="index.css">
+</head>
+<body>
+  <div class="pantalla">
+    <div class="izquierda">
+      <div class="contenedor_botones">
+        <button class="btn liquid" onclick="cargarContenido('INICIO.html')">INICIO</button>
+        <button class="btn liquid" onclick="cargarContenido('AGREGAR.html')">AGREGAR</button>
+        <button class="btn liquid" onclick="cargarContenido('REVISAR.html')">REVISAR</button>
+        <button class="btn liquid" onclick="cargarContenido('INFORME.html')">INFORME</button>
+      </div>
+    </div>
+    <div class="derecha" id="derecha">
+      Derecha
+    </div>
+
+  </div>
+</body>
+<script>
+  function cargarContenido(archivo) {
+    const derecho = document.getElementById('derecha');
+    
+    // Usamos fetch para traer el archivo HTML
+    fetch(archivo)
+      .then(response => {
+        if (!response.ok) throw new Error('Error al cargar el archivo');
+        return response.text();
+      })
+      .then(html => {
+        // Insertamos el contenido dentro del div derecho
+        derecho.innerHTML = html;
+      })
+      .catch(error => {
+        derecho.innerHTML = `<p style="color:red">No se pudo cargar el contenido</p>`;
+        console.error(error);
+      });
+  }
+</script>
+
+
+</html>
+
+
+
+
+
